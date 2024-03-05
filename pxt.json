@@ -3,7 +3,8 @@
     "description": "",
     "dependencies": {
         "device": "*",
-        "arcade-split-screen": "github:riknoll/arcade-split-screen#v0.0.3"
+        "arcade-split-screen": "github:riknoll/arcade-split-screen#v0.0.3",
+        "Custom Keybind Extension": "github:Brohann3214/custom-keybind-extension#ce1cb5acda5cd438592e38da4aaab10b73b46c64"
     },
     "files": [
         "main.blocks",

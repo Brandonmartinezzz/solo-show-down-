@@ -31,6 +31,15 @@ let mySprite = sprites.create(img`
     . . . . . . . . . . . . . . . . 
     `, SpriteKind.Player)
 mySprite.setScale(3, ScaleAnchor.Middle)
+Keybinds.setSimulatorKeymap(
+Keybinds.PlayerNumber.ONE,
+Keybinds.CustomKey.W,
+Keybinds.CustomKey.E,
+Keybinds.CustomKey.A,
+Keybinds.CustomKey.D,
+Keybinds.CustomKey.UP,
+Keybinds.CustomKey.UP
+)
 let mySprite2 = sprites.create(img`
     . . . . . . . . . . . . . . . . 
     . . . . . . . . . . . . . . . . 
@@ -50,6 +59,15 @@ let mySprite2 = sprites.create(img`
     . . . . . . . . . . . . . . . . 
     `, SpriteKind.Player)
 mySprite2.setScale(3, ScaleAnchor.Middle)
+Keybinds.setSimulatorKeymap(
+Keybinds.PlayerNumber.TWO,
+Keybinds.CustomKey.UP,
+Keybinds.CustomKey.UP,
+Keybinds.CustomKey.LEFT,
+Keybinds.CustomKey.RIGHT,
+Keybinds.CustomKey.UP,
+Keybinds.CustomKey.UP
+)
 let tspeed = 0.1
 let mspeed = 175
 mySprite.setBounceOnWall(true)
