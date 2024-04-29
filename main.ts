@@ -76,4 +76,5 @@ game.onUpdate(function () {
         acceleration = -0.25
     }
     acceleration = Math.constrain(speed + acceleration, 0, mspeed)
+    mySprite.sayText("velocity" + Math.round(speed))
 })
