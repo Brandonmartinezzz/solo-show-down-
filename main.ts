@@ -2,6 +2,38 @@ scene.onHitWall(SpriteKind.Player, function (sprite, location) {
     scene.cameraShake(3, 200)
     speed = speed / 1.1
 })
+function change_of_direction (vx: number, vy: number) {
+    if (Math.abs(0) > Math.abs(vy)) {
+        if (vx >= 1) {
+            mySprite.setImage(assets.image`myImage0`)
+        } else if (vx <= -1) {
+            mySprite.setImage(assets.image`myImage`)
+        }
+    } else {
+        if (vy >= 1) {
+            mySprite.setImage(img`
+                . . . . . . . . . . . . . . . . 
+                . . . . . . . . . . . . . . . . 
+                . . . . . . . . . . . . . . . . 
+                . . . . . . . . . . . . . . . . 
+                . . . . . 2 2 2 2 2 2 2 . . . . 
+                . . . . . f f . 2 . f f . . . . 
+                . . . . . f 2 2 2 2 2 f . . . . 
+                . . . . . . 2 2 9 2 2 . . . . . 
+                . . . . . . 2 2 9 2 2 . . . . . 
+                . . . . . . 2 2 9 2 2 . . . . . 
+                . . . . . f 2 2 9 2 2 f . . . . 
+                . . . . . . . 2 2 2 . . . . . . 
+                . . . . . . . . 2 . . . . . . . 
+                . . . . . . . . . . . . . . . . 
+                . . . . . . . . . . . . . . . . 
+                . . . . . . . . . . . . . . . . 
+                `)
+        } else if (vy <= -1) {
+            mySprite.setImage(assets.image`myImage1`)
+        }
+    }
+}
 function Map (num: number) {
     if (num < 5) {
         list = [tilemap`level1`, tilemap`level2`, tilemap`level3`]
@@ -12,21 +44,22 @@ let acceleration = 0
 let direction = 0
 let list: tiles.TileMapData[] = []
 let speed = 0
+let mySprite: Sprite = null
 Map(1)
-let mySprite = sprites.create(img`
+mySprite = sprites.create(img`
     . . . . . . . . . . . . . . . . 
     . . . . . . . . . . . . . . . . 
-    . . . . . . . 2 . . . . . . . . 
-    . . . . . . 2 2 2 . . . . . . . 
-    . . . . f 2 2 9 2 2 f . . . . . 
-    . . . . 2 2 2 9 2 2 2 . . . . . 
-    . . . . 2 2 9 9 9 2 2 . . . . . 
-    . . . . 2 2 9 9 9 2 2 . . . . . 
-    . . . . 2 2 9 9 9 2 2 . . . . . 
-    . . . f 2 2 9 9 9 2 2 f . . . . 
-    . . . f 2 2 2 2 2 2 2 f . . . . 
-    . . . . . . . 2 . . . . . . . . 
-    . . . 2 2 2 2 2 2 2 2 2 . . . . 
+    . . . . . . . . . . . . . . . . 
+    . . . . . . . . . . . . . . . . 
+    . . . . . 2 2 2 2 2 2 2 . . . . 
+    . . . . . f f . 2 . f f . . . . 
+    . . . . . f 2 2 2 2 2 f . . . . 
+    . . . . . . 2 2 9 2 2 . . . . . 
+    . . . . . . 2 2 9 2 2 . . . . . 
+    . . . . . . 2 2 9 2 2 . . . . . 
+    . . . . . f 2 2 9 2 2 f . . . . 
+    . . . . . . . 2 2 2 . . . . . . 
+    . . . . . . . . 2 . . . . . . . 
     . . . . . . . . . . . . . . . . 
     . . . . . . . . . . . . . . . . 
     . . . . . . . . . . . . . . . . 
@@ -76,5 +109,7 @@ game.onUpdate(function () {
         acceleration = -0.25
     }
     acceleration = Math.constrain(speed + acceleration, 0, mspeed)
-    mySprite.sayText("velocity" + Math.round(speed))
+    mySprite.sayText("velocity:" + Math.round(speed))
+    mySprite.vx = Math.cos(direction * speed)
+    mySprite.vx = Math.sin(direction * speed)
 })
