@@ -8,6 +8,7 @@ function Map (num: number) {
         tiles.setCurrentTilemap(list._pickRandom())
     }
 }
+let acceleration = 0
 let direction = 0
 let list: tiles.TileMapData[] = []
 let speed = 0
@@ -63,5 +64,16 @@ splitScreen.cameraFollowSprite(splitScreen.Camera.Camera2, mySprite2)
 game.onUpdate(function () {
     if (controller.right.isPressed()) {
         direction += tspeed * (1 - speed / (1.5 * mspeed))
+        if (controller.left.isPressed()) {
+            direction += 0 - tspeed * (1 - speed / (1.5 * mspeed))
+        }
     }
+    if (controller.A.isPressed()) {
+        acceleration = 1.5
+    } else if (controller.down.isPressed()) {
+        acceleration = -2
+    } else {
+        acceleration = -0.25
+    }
+    acceleration = Math.constrain(speed + acceleration, 0, mspeed)
 })
